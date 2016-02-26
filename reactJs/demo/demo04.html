@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  	<meta charset="utf-8">
+    <script src="./build/react.js"></script>
+    <script src="./build/react-dom.js"></script>
+    <script src="./build/browser.min.js"></script>
+  </head>
+  <body>
+  <!--  -->
+  	<p>应用1：</p>
+    <div id="example"></div>
+	<p style="padding-top: 50px;border-top: 1px solid red;">应用2：</p>
+    <div id="example2"></div>
+    <script type="text/babel">
+	var LikeButton = React.createClass({
+		getInitialState: function() {
+		    return {liked: false};
+		},
+		handleClick: function(event) {
+		  this.setState({liked: !this.state.liked});
+		},
+		render: function() {
+		  var text = this.state.liked ? 'like' : 'haven\'t liked';
+		  return (
+		    <p onClick={this.handleClick}>
+		      You {text} this. Click to toggle.
+		    </p>
+		  );
+		}
+	});
+
+	ReactDOM.render(
+		<LikeButton />,
+		document.getElementById('example')
+	);
+
+
+	//表单
+	var Input = React.createClass({
+        getInitialState: function() {
+          return {value: 'Hello!'};
+        },
+        handleChange: function(event) {
+          this.setState({value: event.target.value});
+        },
+        render: function () {
+          var value = this.state.value;
+          return (
+            <div>
+              <input type="text" value={value} onChange={this.handleChange} />
+              <p>{value}</p>
+            </div>
+          );
+        }
+      });
+
+      ReactDOM.render(<Input/>, document.getElementById('example2'));
+    </script>
+  </body>
+</html>
+
